@@ -279,7 +279,7 @@ function Projects() {
       <div className="max-w-6xl mx-auto">
         <SectionHeader
           title="核心工具项目"
-          sub="覆盖资产复用、出档回收、交付复核和 Reaper 内处理。"
+          sub="围绕语音生产链路中的复用、回收、入库和后期处理，处理高频且容易返工的环节。"
         />
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-5">
