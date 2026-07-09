@@ -162,7 +162,7 @@ export default function ProjectDetail() {
       <div className="max-w-4xl mx-auto px-6 py-16 flex flex-col gap-12">
 
         {/* Problem */}
-        <Block title="问题背景">
+        <Block title="使用场景">
           <div className="rounded-xl border p-6" style={{ background: "rgba(255,255,255,0.018)", borderColor: T.border }}>
             <p style={{ fontSize: T.body, color: T.sub, lineHeight: T.loose }}>{project.problem}</p>
           </div>

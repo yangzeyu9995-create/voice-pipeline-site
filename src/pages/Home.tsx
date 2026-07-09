@@ -343,7 +343,7 @@ function Projects() {
                     style={{ borderColor: "rgba(255,255,255,0.06)" }}
                   >
                     {[
-                      { label: "问题", value: project.problem },
+                      { label: "使用场景", value: project.problem },
                       { label: "方法", value: project.method },
                       { label: "价值", value: project.value },
                     ].map(({ label, value }, idx) => (
@@ -358,7 +358,7 @@ function Projects() {
                         {/* field label — violet, readable Inter */}
                         <span
                           className="flex-shrink-0 font-semibold pt-px"
-                          style={{ fontSize: T.label, fontFamily: HF, color: T.fieldLabel, minWidth: 28 }}
+                          style={{ fontSize: T.label, fontFamily: HF, color: T.fieldLabel, minWidth: 56 }}
                         >
                           {label}
                         </span>
