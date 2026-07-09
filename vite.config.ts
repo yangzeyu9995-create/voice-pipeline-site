@@ -17,6 +17,9 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
+  // Vercel builds with base "/" (no env var). Only the GitHub Pages
+  // workflow sets GITHUB_PAGES=true, which switches base to the repo subpath.
+  base: process.env.GITHUB_PAGES === 'true' ? '/voice-pipeline-site/' : '/',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if
