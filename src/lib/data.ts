@@ -252,8 +252,16 @@ export const supportingTools: SupportingTool[] = [
     name: "AudioBackfill",
     stageLabel: "工程配置",
     status: "In Development",
-    purpose: "台词到音频路径回填，人工确认制；当前处于样本验证。",
-    progress: "2026.07 · 验证中 · 预测一致率 97.8%（750/767）",
+    purpose: "按台词把本地音频路径回填至 SVN 配置表，人工确认制。",
+    progress: "2026.06 · 已用现有正确表验证 · 覆盖范围内一致率 96.4%（750/778）",
+  },
+  {
+    icon: Activity,
+    name: "EventDurationTool",
+    stageLabel: "后期处理",
+    status: "In Use",
+    purpose: "读 FMOD 事件补语音时长，并校验未命名 / 无音频 / 查询失败等缺失（原 FmodDurationTool，将并入本地时长工具）。",
+    progress: "2026.07 · 实测命中 207/211 · 约 98.1%",
   },
   {
     icon: Tag,
@@ -287,7 +295,7 @@ export const workflowStages: WorkflowStage[] = [
   { icon: FileText,  label: "文本准备",   tools: ["AmbVoiceNamer"],                                note: "配音表 / 命名" },
   { icon: Mic,       label: "出档回收",   tools: ["AudioCheck"],                                   note: "交付完整性" },
   { icon: Shield,    label: "交付复核",   tools: ["AudioDeliveryQA"],                              note: "命名 / 内容核对" },
-  { icon: Cpu,       label: "后期处理",   tools: ["ReaperTools", "DurationFiller"],                note: "标准化处理 / 导表" },
+  { icon: Cpu,       label: "后期处理",   tools: ["ReaperTools", "EventDurationTool"],             note: "标准化处理 / 时长配置" },
   { icon: Layers,    label: "工程配置",   tools: ["AudioConfigQA", "AudioBackfill"],               note: "配置校对 / 回填" },
   { icon: RefreshCw, label: "资产复用",   tools: ["AudioReuse", "AudioTransfer", "MonthlyVoiceTool"], note: "历史素材 / 候选" },
 ];
@@ -297,7 +305,7 @@ export const workflowStages: WorkflowStage[] = [
 export const metrics: Metric[] = [
   { value: "398,899", label: "已索引音频文件", sub: "AudioReuse 基础库",                icon: Database },
   { value: "882 h",   label: "已索引音频时长", sub: "历史语音资产",                     icon: Activity },
-  { value: "97.8%",   label: "已预测样本一致率", sub: "AudioBackfill · 750 / 767",     icon: FileCheck },
+  { value: "96.4%",   label: "路径回填覆盖内一致率", sub: "AudioBackfill · 750 / 778",     icon: FileCheck },
   { value: "待补充",   label: "实际使用数据", sub: "命中率 / 复用条数 / 节省时间",       icon: RefreshCw },
 ];
 
