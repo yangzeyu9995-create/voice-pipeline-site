@@ -91,7 +91,7 @@ export const projects: Project[] = [
     icon: Database,
     name: "AudioReuse",
     slug: "audio-reuse",
-    positioning: "本地语音资产复用检索助手",
+    positioning: "本地语音资产复用检索",
     stageLabel: "资产复用",
     status: "In Development",
     progress: "2026.05 起 · 检索库已建立 · GUI 迭代中",
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     icon: ScanLine,
     name: "AudioCheck",
     slug: "audio-check",
-    positioning: "多棚出档完整性核查",
+    positioning: "多批次语音出档检查",
     stageLabel: "出档回收",
     status: "Stable",
     progress: "2026.04 起 · 规则收口 · 稳定复用",
@@ -167,7 +167,7 @@ export const projects: Project[] = [
     icon: Shield,
     name: "AudioDeliveryQA",
     slug: "audio-delivery-qa",
-    positioning: "入库前交付复核工具",
+    positioning: "入库前交付复核",
     stageLabel: "交付复核",
     status: "Stable",
     progress: "2026.05 起 · v3 + 绿色版 exe · 稳定复用",
@@ -206,7 +206,7 @@ export const projects: Project[] = [
     icon: Music,
     name: "ReaperTools",
     slug: "reaper-tools",
-    positioning: "Reaper 后期批处理脚本组",
+    positioning: "Reaper 后期批处理",
     stageLabel: "后期处理",
     status: "Internal Utility",
     progress: "2026.06 起 · Lua v0.4 · 部分脚本可通用化",
@@ -248,10 +248,10 @@ export const projects: Project[] = [
 export const supportingTools: SupportingTool[] = [
   {
     icon: FileCheck,
-    name: "AudioBackfill",
+    name: "AudioLinker",
     stageLabel: "工程配置",
     status: "In Development",
-    purpose: "按台词把本地音频路径回填至 SVN 配置表，人工确认制。",
+    purpose: "按台词、文件名和角色规则，将本地语音与配置表中的 Dialog 项建立映射关系，并保留人工确认。",
     progress: "2026.06 · 已用现有正确表验证 · 覆盖范围内一致率 96.4%（750/778）",
   },
   {
@@ -259,7 +259,7 @@ export const supportingTools: SupportingTool[] = [
     name: "EventDurationTool",
     stageLabel: "后期处理",
     status: "In Use",
-    purpose: "读 FMOD 事件补语音时长，并校验未命名 / 无音频 / 查询失败等缺失（原 FmodDurationTool，将并入本地时长工具）。",
+    purpose: "读 FMOD 事件补语音时长，并校验未命名 / 无音频 / 查询失败等缺失。",
     progress: "2026.07 · 实测命中 207/211 · 约 98.1%",
   },
   {
@@ -275,7 +275,7 @@ export const supportingTools: SupportingTool[] = [
     name: "AudioConfigQA",
     stageLabel: "工程配置",
     status: "In Development",
-    purpose: "FMOD / Unity 配置后只读校对，检查文本、路径和实际音频一致性。",
+    purpose: "FMOD / Unity 配置后只读校验，检查文本、路径和实际音频的一致性。",
     progress: "2026.05 · GUI 基本稳定 · 持续迭代中",
   },
 ];
@@ -287,7 +287,7 @@ export const workflowStages: WorkflowStage[] = [
   { icon: Mic,       label: "出档回收",   tools: ["AudioCheck"],                                   note: "交付完整性" },
   { icon: Shield,    label: "交付复核",   tools: ["AudioDeliveryQA"],                              note: "命名 / 内容核对" },
   { icon: Cpu,       label: "后期处理",   tools: ["ReaperTools", "EventDurationTool"],             note: "标准化处理 / 时长配置" },
-  { icon: Layers,    label: "工程配置",   tools: ["AudioConfigQA", "AudioBackfill"],               note: "配置校对 / 回填" },
+  { icon: Layers,    label: "工程配置",   tools: ["AudioConfigQA", "AudioLinker"],               note: "配置校验 / 映射" },
   { icon: RefreshCw, label: "资产复用",   tools: ["AudioReuse", "AudioTransfer", "MonthlyVoiceTool"], note: "历史素材 / 候选" },
 ];
 
@@ -296,7 +296,7 @@ export const workflowStages: WorkflowStage[] = [
 export const metrics: Metric[] = [
   { value: "398,899", label: "已索引音频文件", sub: "AudioReuse 基础库",                icon: Database },
   { value: "882 h",   label: "已索引音频时长", sub: "历史语音资产",                     icon: Activity },
-  { value: "96.4%",   label: "路径回填覆盖内一致率", sub: "AudioBackfill · 750 / 778",     icon: FileCheck },
+  { value: "96.4%",   label: "配置映射覆盖内一致率", sub: "AudioLinker · 750 / 778",     icon: FileCheck },
   { value: "待补充",   label: "实际使用数据", sub: "命中率 / 复用条数 / 节省时间",       icon: RefreshCw },
 ];
 
