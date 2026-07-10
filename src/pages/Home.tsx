@@ -445,10 +445,6 @@ function SupportingUtilities() {
                 </div>
                 <p style={{ fontSize: T.small, color: T.sub, lineHeight: T.base, textWrap: "pretty" }}>{tool.purpose}</p>
                 <div className="pt-2 border-t" style={{ borderColor: T.borderSub }}>
-                  <span style={{ fontSize: T.nano, fontFamily: HF, color: T.faint }}>后续：</span>
-                  <span style={{ fontSize: T.nano, color: T.sub, lineHeight: T.base }}>{tool.nextSteps}</span>
-                </div>
-                <div className="pt-2 border-t" style={{ borderColor: T.borderSub }}>
                   <span style={{ fontSize: T.nano, fontFamily: HF, color: T.faint }}>{tool.progress}</span>
                 </div>
               </div>

@@ -56,7 +56,6 @@ export interface SupportingTool {
   status: ToolStatus;
   purpose: string;
   progress: string;
-  nextSteps: string;
 }
 
 export interface WorkflowStage {
@@ -254,7 +253,6 @@ export const supportingTools: SupportingTool[] = [
     status: "In Development",
     purpose: "按台词、文件名和角色规则，将本地语音与配置表中的 Dialog 项建立映射关系，并保留人工确认。",
     progress: "2026.06 · 已用现有正确表验证 · 覆盖范围内一致率 96.4%（750/778）",
-    nextSteps: "扩大映射覆盖范围；加置信度分级 + 批量人工确认；稳固合并单元格还原、写入被 Excel 冲掉等已知坑。",
   },
   {
     icon: Activity,
@@ -263,7 +261,6 @@ export const supportingTools: SupportingTool[] = [
     status: "In Use",
     purpose: "基于 FMOD 事件补全语音时长，并校验未命名、无音频、查询失败等缺失项。",
     progress: "2026.07 · 实测命中 207/211 · 约 98.1%",
-    nextSteps: "提升命中率（当前 207/211，补齐剩余缺失项）；完善「时长来源」开关（FMOD 工程 / 本地音频）与批量缺失校验。",
   },
   {
     icon: RefreshCw,
@@ -272,7 +269,6 @@ export const supportingTools: SupportingTool[] = [
     status: "In Development",
     purpose: "按规则从配音文本筛选喊昵称、玩家语音等台词，并批处理对应音频，支撑相关玩法落地。",
     progress: "2026.07 · SPEC / 参考实现 · 待验证",
-    nextSteps: "用最新版本号验证跑通后转在用；版本号 / 筛选规则参数化，统一支撑喊昵称、玩家语音等多用途，不再每月新建脚本。",
   },
   {
     icon: Layers,
@@ -281,7 +277,6 @@ export const supportingTools: SupportingTool[] = [
     status: "In Development",
     purpose: "FMOD / Unity 配置后只读校验，检查文本、路径和实际音频的一致性。",
     progress: "2026.05 · GUI 基本稳定 · 持续迭代中",
-    nextSteps: "从只读校对补上审核流：人工确认、问题标记、复查状态、导出清单，让校验结果可闭环处理。",
   },
 ];
 
