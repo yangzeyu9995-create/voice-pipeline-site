@@ -267,7 +267,7 @@ export const supportingTools: SupportingTool[] = [
     name: "MonthlyVoiceTool",
     stageLabel: "资产复用",
     status: "In Development",
-    purpose: "月度喊昵称 / 玩家语音批处理方向；SPEC 与参考实现阶段。",
+    purpose: "按规则从配音文本筛选喊昵称、玩家语音等台词，并批处理对应音频，支撑相关玩法落地。",
     progress: "2026.07 · SPEC / 参考实现 · 待验证",
   },
   {
