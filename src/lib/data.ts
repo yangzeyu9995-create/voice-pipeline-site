@@ -56,6 +56,7 @@ export interface SupportingTool {
   status: ToolStatus;
   purpose: string;
   progress: string;
+  nextSteps: string;
 }
 
 export interface WorkflowStage {
@@ -89,8 +90,8 @@ export interface RoadmapItem {
 export const projects: Project[] = [
   {
     icon: Database,
-    name: "AudioReuse",
-    slug: "audio-reuse",
+    name: "VoiceFinder",
+    slug: "voice-finder",
     positioning: "本地语音资产复用检索",
     stageLabel: "资产复用",
     status: "In Development",
@@ -122,14 +123,14 @@ export const projects: Project[] = [
       "DB 当前约 495 MB；音频侧 GUI（Phase 3）/ 切片（Phase 4）未开",
     ],
     usageNotes: "当前通过命令行运行（python search.py -i / script_index/search.py）。在排录制计划前先检索，确认资产是否已存在。目标不是简单文件搜索，而是逐步形成面向语音复用的本地检索助手：先能找得到，再能筛得准，最后服务录音排期和复用决策。",
-    screenshotLabel: "AudioReuse · 命令行检索 / 语义检索输出",
+    screenshotLabel: "VoiceFinder · 命令行检索 / 语义检索输出",
     knownIssues: "GUI 尚未开发，当前仅命令行。Whisper small 对短气声 / 呼吸（<0.8s）偶有脑补文字，需人工复审。",
-    nextSteps: "开发可视化检索界面（下一阶段重点投入方向）；支持过滤和团队共享。",
+    nextSteps: "从命令行升级为可视化检索界面（检索 → 试听 → 筛选 → 复用候选篮）；把自然语言查询解析成可解释条件并接入 Reaper 工作流；支持过滤与团队共享。下阶段重点投入。",
   },
   {
     icon: ScanLine,
-    name: "AudioCheck",
-    slug: "audio-check",
+    name: "AudioDeliveryCheck",
+    slug: "audio-delivery-check",
     positioning: "多批次语音出档检查",
     stageLabel: "出档检查",
     status: "Stable",
@@ -158,15 +159,15 @@ export const projects: Project[] = [
       "2026.04：基础缺失核查和完成率统计",
       "2026.06：命名规则收口，性别后缀 / 复用灰格 / 棚映射判定修正，稳定复用",
     ],
-    usageNotes: "每月出档后运行（python run_audiocheck.py <batch>）。运行前确认配音文本已更新为当月版本。快捷口令见 AudioCheck 规则文档。",
-    screenshotLabel: "AudioCheck · 月度进度看板 / 缺失清单",
+    usageNotes: "每月出档后运行（python run_audiocheck.py <batch>）。运行前确认配音文本已更新为当月版本。快捷口令见 AudioDeliveryCheck 规则文档。",
+    screenshotLabel: "AudioDeliveryCheck · 月度进度看板 / 缺失清单",
     knownIssues: "强依赖内部路径和棚映射规则；当前按单批次运行，未做多批次合并对账。",
-    nextSteps: "维持现状，按月复用；如棚映射或命名规则变化再调整。",
+    nextSteps: "支持多批次合并对账（当前按单批次）；棚映射 / 命名规则参数化，随版本维护，减少换月改动。",
   },
   {
     icon: Shield,
-    name: "AudioDeliveryQA",
-    slug: "audio-delivery-qa",
+    name: "AudioIntakeQA",
+    slug: "audio-intake-qa",
     positioning: "入库前交付复核",
     stageLabel: "入库复核",
     status: "Stable",
@@ -198,9 +199,9 @@ export const projects: Project[] = [
       "v3：exe 封装，免装 Python；ASR 优先 + 序列 fallback",
     ],
     usageNotes: "收到棚交付后运行（绿色版 exe 或 python gui.py）。命名规则见工具 docs/naming_logic.md。ASR 模型本地部署。",
-    screenshotLabel: "AudioDeliveryQA · 三栏复核 / 命名违规标注",
+    screenshotLabel: "AudioIntakeQA · 三栏复核 / 命名违规标注",
     knownIssues: "ASR 对强方言口音准确率偏低，需人工复审；大批次 ASR 处理时间较长。",
-    nextSteps: "功能完整，维持现状；除非命名规则变化不新增。",
+    nextSteps: "功能完整，维持现状按棚批次复用；仅在命名规则变化时调整。可选优化：大批次 ASR 提速、强方言口音模型增强。",
   },
   {
     icon: Music,
@@ -239,7 +240,7 @@ export const projects: Project[] = [
     usageNotes: "在 Reaper 内通过 ReaScript 运行。部分脚本可整理为通用 Lua 工具，项目规则相关脚本需保留配置项。",
     screenshotLabel: "ReaperTools · 分轨 / Region 命名 / 导表",
     knownIssues: "脚本按当前项目轨道结构和命名规则编写，跨项目复用前需调整配置项。",
-    nextSteps: "整理可复用 Lua 脚本包，区分通用脚本和项目规则脚本。",
+    nextSteps: "整理可复用 Lua 脚本包，区分通用脚本与项目规则脚本，通用部分沉淀为可分发工具组。",
   },
 ];
 
@@ -248,11 +249,12 @@ export const projects: Project[] = [
 export const supportingTools: SupportingTool[] = [
   {
     icon: FileCheck,
-    name: "AudioLinker",
+    name: "AudioConfigLinker",
     stageLabel: "工程配置",
     status: "In Development",
     purpose: "按台词、文件名和角色规则，将本地语音与配置表中的 Dialog 项建立映射关系，并保留人工确认。",
     progress: "2026.06 · 已用现有正确表验证 · 覆盖范围内一致率 96.4%（750/778）",
+    nextSteps: "扩大映射覆盖范围；加置信度分级 + 批量人工确认；稳固合并单元格还原、写入被 Excel 冲掉等已知坑。",
   },
   {
     icon: Activity,
@@ -261,14 +263,16 @@ export const supportingTools: SupportingTool[] = [
     status: "In Use",
     purpose: "基于 FMOD 事件补全语音时长，并校验未命名、无音频、查询失败等缺失项。",
     progress: "2026.07 · 实测命中 207/211 · 约 98.1%",
+    nextSteps: "提升命中率（当前 207/211，补齐剩余缺失项）；完善「时长来源」开关（FMOD 工程 / 本地音频）与批量缺失校验。",
   },
   {
     icon: RefreshCw,
-    name: "MonthlyVoiceTool",
+    name: "VoiceLineFilter",
     stageLabel: "资产复用",
     status: "In Development",
     purpose: "按规则从配音文本筛选喊昵称、玩家语音等台词，并批处理对应音频，支撑相关玩法落地。",
     progress: "2026.07 · SPEC / 参考实现 · 待验证",
+    nextSteps: "用最新版本号验证跑通后转在用；版本号 / 筛选规则参数化，统一支撑喊昵称、玩家语音等多用途，不再每月新建脚本。",
   },
   {
     icon: Layers,
@@ -277,6 +281,7 @@ export const supportingTools: SupportingTool[] = [
     status: "In Development",
     purpose: "FMOD / Unity 配置后只读校验，检查文本、路径和实际音频的一致性。",
     progress: "2026.05 · GUI 基本稳定 · 持续迭代中",
+    nextSteps: "从只读校对补上审核流：人工确认、问题标记、复查状态、导出清单，让校验结果可闭环处理。",
   },
 ];
 
@@ -284,19 +289,19 @@ export const supportingTools: SupportingTool[] = [
 
 export const workflowStages: WorkflowStage[] = [
   { icon: FileText,  label: "文本准备",   tools: ["AmbVoiceNamer"],                                note: "配音表 / 命名" },
-  { icon: Mic,       label: "出档检查",   tools: ["AudioCheck"],                                   note: "交付完整性" },
-  { icon: Shield,    label: "入库复核",   tools: ["AudioDeliveryQA"],                              note: "命名 / 内容核对" },
+  { icon: Mic,       label: "出档检查",   tools: ["AudioDeliveryCheck"],                           note: "交付完整性" },
+  { icon: Shield,    label: "入库复核",   tools: ["AudioIntakeQA"],                                note: "命名 / 内容核对" },
   { icon: Cpu,       label: "后期处理",   tools: ["ReaperTools", "EventDurationTool"],             note: "标准化处理 / 时长配置" },
-  { icon: Layers,    label: "工程配置",   tools: ["AudioConfigQA", "AudioLinker"],               note: "配置校验 / 映射" },
-  { icon: RefreshCw, label: "资产复用",   tools: ["AudioReuse", "AudioTransfer", "MonthlyVoiceTool"], note: "历史素材 / 候选" },
+  { icon: Layers,    label: "工程配置",   tools: ["AudioConfigQA", "AudioConfigLinker"],               note: "配置校验 / 映射" },
+  { icon: RefreshCw, label: "资产复用",   tools: ["VoiceFinder", "AudioTransfer", "VoiceLineFilter"], note: "历史素材 / 候选" },
 ];
 
 // ─── Metrics (资产库基础规模，非复用收益) ─────────────────────────────────────────
 
 export const metrics: Metric[] = [
-  { value: "398,899", label: "已索引音频文件", sub: "AudioReuse 基础库",                icon: Database },
+  { value: "398,899", label: "已索引音频文件", sub: "VoiceFinder 基础库",                icon: Database },
   { value: "882 h",   label: "已索引音频时长", sub: "历史语音资产",                     icon: Activity },
-  { value: "96.4%",   label: "配置映射覆盖内一致率", sub: "AudioLinker · 750 / 778",     icon: FileCheck },
+  { value: "96.4%",   label: "配置映射覆盖内一致率", sub: "AudioConfigLinker · 750 / 778",     icon: FileCheck },
   { value: "待补充",   label: "实际使用数据", sub: "命中率 / 复用条数 / 节省时间",       icon: RefreshCw },
 ];
 
@@ -313,7 +318,7 @@ export const principles: Principle[] = [
 // ─── Roadmap (短标签) ────────────────────────────────────────────────────────────
 
 export const roadmapItems: RoadmapItem[] = [
-  { name: "AudioReuse GUI",        description: "完善检索、试听、筛选和复用候选界面。" },
+  { name: "VoiceFinder GUI",        description: "完善检索、试听、筛选和复用候选界面。" },
   { name: "AudioConfigQA 审核流",  description: "增加人工确认、问题标记、复查状态和导出清单。" },
   { name: "ReaperTools 通用包",    description: "整理可复用 Lua，区分通用脚本和项目规则脚本。" },
   { name: "使用数据埋点",          description: "记录查询次数、命中率、复用条数和节省时间。" },

@@ -35,6 +35,6 @@ git push
 
 ## 关键配置（已就位，勿随意改动）
 
-- `vercel.json`：配置了 SPA rewrite，保证详情页（如 `/project/audio-reuse`）刷新不 404。
+- `vercel.json`：配置了 SPA rewrite，保证详情页（如 `/project/voice-finder`）刷新不 404。
 - `.gitignore`：已排除 `node_modules/` 和 `dist/`，不会把依赖和构建产物提交进仓库。
 - 路由使用 `createBrowserRouter`（HTML5 history），依赖上面的 rewrite 才能正常刷新。
