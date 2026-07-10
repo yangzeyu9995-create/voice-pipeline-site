@@ -5,7 +5,6 @@ import {
   Layers,
   FileCheck,
   Music,
-  Tag,
   FileText,
   Mic,
   Cpu,
@@ -262,14 +261,6 @@ export const supportingTools: SupportingTool[] = [
     status: "In Use",
     purpose: "读 FMOD 事件补语音时长，并校验未命名 / 无音频 / 查询失败等缺失（原 FmodDurationTool，将并入本地时长工具）。",
     progress: "2026.07 · 实测命中 207/211 · 约 98.1%",
-  },
-  {
-    icon: Tag,
-    name: "AmbVoiceNamer",
-    stageLabel: "文本准备",
-    status: "Stable",
-    purpose: "氛围配音目标名生成，纯逻辑、无内部路径依赖。",
-    progress: "2026.06 · 稳定，可分发",
   },
   {
     icon: RefreshCw,
