@@ -77,7 +77,7 @@ function Hero() {
   return (
     <section
       className="relative flex items-center justify-center overflow-hidden pt-14"
-      style={{ minHeight: "56vh" }}
+      style={{ minHeight: "46vh" }}
     >
       {/* ambient glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -119,7 +119,7 @@ function Hero() {
           style={{
             fontFamily: HF,
             fontWeight: T.bold,
-            fontSize: "clamp(2.4rem, 6.5vw, 4rem)",
+            fontSize: "clamp(2rem, 5.5vw, 3.4rem)",
             lineHeight: T.tight,
             letterSpacing: "-0.03em",
             color: T.white,
@@ -158,7 +158,7 @@ function Hero() {
 
 function Pipeline() {
   return (
-    <section id="pipeline" className="pt-8 pb-24 px-6 relative overflow-hidden">
+    <section id="pipeline" className="py-24 px-6 relative overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: "linear-gradient(180deg, rgba(124,92,252,0.030) 0%, transparent 55%)" }}
@@ -170,7 +170,7 @@ function Pipeline() {
         />
 
         {/* desktop */}
-        <div className="mt-14 hidden lg:flex items-start">
+        <div className="mt-12 hidden lg:flex items-start">
           {workflowStages.map((stage, i) => {
             const Icon = stage.icon;
             const isLast = i === workflowStages.length - 1;
@@ -229,7 +229,7 @@ function Pipeline() {
         </div>
 
         {/* mobile */}
-        <div className="lg:hidden mt-10 flex flex-col gap-2">
+        <div className="lg:hidden mt-12 flex flex-col gap-2">
           {workflowStages.map((stage, i) => {
             const Icon = stage.icon;
             const isLast = i === workflowStages.length - 1;
@@ -279,10 +279,10 @@ function Projects() {
       <div className="max-w-6xl mx-auto">
         <SectionHeader
           title="核心工具项目"
-          sub="围绕语音生产链路中的复用、回收、入库和后期处理，处理高频且容易返工的环节。"
+          sub="围绕语音交付链路，把规则明确、重复度高且容易返工的环节做成可复用工具。"
         />
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
           {projects.map(project => {
             const Icon = project.icon;
             return (
@@ -344,8 +344,8 @@ function Projects() {
                   >
                     {[
                       { label: "使用场景", value: project.problem },
-                      { label: "方法", value: project.method },
-                      { label: "价值", value: project.value },
+                      { label: "核心能力", value: project.method },
+                      { label: "应用结果", value: project.value },
                     ].map(({ label, value }, idx) => (
                       <div
                         key={label}
@@ -395,21 +395,11 @@ function Projects() {
 
 function SupportingUtilities() {
   return (
-    <section className="py-14 px-6">
+    <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h2
-            className="font-semibold text-white"
-            style={{ fontSize: T.section, fontFamily: HF, letterSpacing: "-0.02em", lineHeight: T.tight }}
-          >
-            辅助工具
-          </h2>
-          <p className="mt-2.5" style={{ fontSize: T.body, color: T.sub, lineHeight: T.relax, textWrap: "pretty" }}>
-            围绕主链路的单点能力，解决具体环节问题。
-          </p>
-        </div>
+        <SectionHeader title="辅助工具" sub="围绕主链路的单点能力，解决具体环节问题。" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {supportingTools.map(tool => {
             const Icon = tool.icon;
             return (
@@ -444,9 +434,6 @@ function SupportingUtilities() {
                   <StagePill label={tool.stageLabel} />
                 </div>
                 <p style={{ fontSize: T.small, color: T.sub, lineHeight: T.base, textWrap: "pretty" }}>{tool.purpose}</p>
-                <div className="pt-2 border-t" style={{ borderColor: T.borderSub }}>
-                  <span style={{ fontSize: T.nano, fontFamily: HF, color: T.faint }}>{tool.progress}</span>
-                </div>
               </div>
             );
           })}
@@ -552,7 +539,7 @@ function Principles() {
 
 function NextSteps() {
   return (
-    <section className="py-20 px-6">
+    <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <SectionHeader title="后续方向" sub="几个正在推进或计划中的改进方向。" />
 

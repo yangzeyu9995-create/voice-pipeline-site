@@ -1,4 +1,4 @@
-import { CheckCircle2, Activity, CircleDashed, Wrench } from "lucide-react";
+import { Activity, CircleDashed, Wrench } from "lucide-react";
 import type { ToolStatus } from "../lib/data";
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
@@ -52,11 +52,9 @@ export const T = {
 
 export function StatusPill({ status }: { status: ToolStatus }) {
   const map: Record<ToolStatus, { cls: string; icon: React.ReactNode }> = {
-    Stable:             { cls: "text-emerald-400 bg-emerald-500/10 border-emerald-500/22", icon: <CheckCircle2 className="w-2.5 h-2.5" /> },
-    "In Use":           { cls: "text-sky-400 bg-sky-500/10 border-sky-500/22",             icon: <Activity className="w-2.5 h-2.5" /> },
-    "In Development":   { cls: "text-amber-400 bg-amber-500/10 border-amber-500/22",       icon: <CircleDashed className="w-2.5 h-2.5" /> },
-    "Internal Script":  { cls: "text-zinc-400 bg-zinc-500/10 border-zinc-500/22",          icon: <Wrench className="w-2.5 h-2.5" /> },
-    "Internal Utility": { cls: "text-zinc-400 bg-zinc-500/10 border-zinc-500/22",          icon: <Wrench className="w-2.5 h-2.5" /> },
+    "在用":   { cls: "text-sky-400 bg-sky-500/10 border-sky-500/22",             icon: <Activity className="w-2.5 h-2.5" /> },
+    "迭代中": { cls: "text-amber-400 bg-amber-500/10 border-amber-500/22",       icon: <CircleDashed className="w-2.5 h-2.5" /> },
+    "待验证": { cls: "text-zinc-400 bg-zinc-500/10 border-zinc-500/22",          icon: <Wrench className="w-2.5 h-2.5" /> },
   };
   const { cls, icon } = map[status];
   return (
