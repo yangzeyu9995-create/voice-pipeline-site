@@ -278,8 +278,8 @@ function Projects() {
     <section id="projects" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
-          title="核心工具项目"
-          sub="围绕语音交付链路，把规则明确、重复度高且容易返工的环节做成可复用工具。"
+          title="核心能力"
+          sub="围绕语音生产交付链路，将高频重复、标准化程度高的关键流程工具化，沉淀为可复用的生产能力。"
         />
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -397,7 +397,7 @@ function SupportingUtilities() {
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader title="辅助工具" sub="围绕主链路的单点能力，解决具体环节问题。" />
+        <SectionHeader title="辅助能力" sub="围绕语音生产交付链路中的具体业务场景，将局部流程工具化，解决专项问题，提升处理效率与交付质量。" />
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {supportingTools.map(tool => {
