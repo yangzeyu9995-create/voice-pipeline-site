@@ -307,7 +307,7 @@ export const metrics: Metric[] = [
   { value: "320,818", label: "去重音频文件",   sub: "111 万条路径引用去重后", icon: Database },
   { value: "6,983",   label: "近三月核对条数", sub: "出档核对 · 2026.05–07",  icon: FileCheck },
   { value: "99,524",  label: "配音文本条数",   sub: "可检索文本库",           icon: FileText },
-  { value: "55,143",  label: "已打语义标签",   sub: "打标进行中 · 约 55%",    icon: RefreshCw },
+  { value: "60,781",  label: "已打语义标签",   sub: "打标进行中 · 约 61%",    icon: RefreshCw },
 ];
 
 // ─── Principles (设计原则) ───────────────────────────────────────────────────────
