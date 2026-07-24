@@ -90,7 +90,7 @@ export function StagePill({ label }: { label: string }) {
 
 export function SectionHeader({ title, sub }: { title: string; sub?: string }) {
   return (
-    <div className="max-w-xl">
+    <div>
       <h2
         className="text-white mb-3"
         style={{
@@ -104,7 +104,7 @@ export function SectionHeader({ title, sub }: { title: string; sub?: string }) {
         {title}
       </h2>
       {sub && (
-        <p style={{ fontSize: T.body, color: T.sub, lineHeight: T.relax, textWrap: "pretty" }}>
+        <p style={{ fontSize: T.body, color: T.sub, lineHeight: T.relax, whiteSpace: "nowrap" }}>
           {sub}
         </p>
       )}
